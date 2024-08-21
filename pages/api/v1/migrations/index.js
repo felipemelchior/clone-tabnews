@@ -33,5 +33,5 @@ export default async function migrations(request, response) {
 
   await dbClient.end();
 
-  return response.status(405);
+  return response.status(405).send({ text: "Method not allowed" });
 }

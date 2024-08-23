@@ -1,3 +1,9 @@
+import orchestrator from "tests/orchestrator";
+
+beforeAll(async () => {
+  await orchestrator.waitForAllServices();
+});
+
 async function fetchData() {
   return await fetch("http://localhost:3000/api/v1/migrations", {
     method: "PUT",

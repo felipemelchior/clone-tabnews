@@ -1,14 +1,14 @@
 import database from "infra/database";
+import orchestrator from "tests/orchestrator";
+
+beforeAll(async () => {
+  await orchestrator.waitForAllServices();
+  await database.query("DROP SCHEMA public CASCADE; CREATE SCHEMA public;");
+});
 
 async function fetchData() {
   return await fetch("http://localhost:3000/api/v1/migrations");
 }
-
-async function cleanDatabase() {
-  await database.query("DROP SCHEMA public CASCADE; CREATE SCHEMA public;");
-}
-
-beforeAll(cleanDatabase);
 
 test("GET /api/v1/migrations should return status code 200", async () => {
   const response = await fetchData();

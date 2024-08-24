@@ -16,5 +16,6 @@ test("GET /api/v1/status/user should return status 200", async () => {
 
 test("GET /api/v1/status/user should return postgres user", async () => {
   const response = await fetchData();
-  expect(response.json()).resolves.toEqual({ current_user: "postgres" });
+  const responseBody = await response.json();
+  expect(responseBody).toEqual({ current_user: "postgres" });
 });

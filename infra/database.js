@@ -37,7 +37,9 @@ async function getNewClient() {
   return client;
 }
 
-export default {
+const exportedObject = {
   query,
   getNewClient,
 };
+
+export default exportedObject;

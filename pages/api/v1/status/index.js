@@ -1,7 +1,6 @@
 import database from "infra/database.js";
 
 async function status(request, response) {
-  let variable;
   const databaseName = process.env.POSTGRES_DB;
   const result = await database.query({
     text: "SELECT split_part(version(), ' ', 2) AS postgres_version, current_setting('max_connections')::int AS max_connections, count(*)::int AS opened_connections FROM pg_stat_activity WHERE datname = $1;",

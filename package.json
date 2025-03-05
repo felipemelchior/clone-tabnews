@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "yarn run services:up && yarn run services:wait:database && yarn run migrations:up && (trap 'yarn run services:stop' INT TERM ; next dev)",
+    "dev": "yarn run services:up && yarn run services:wait:database && yarn run migrations:up && node scripts/dev.mjs",
     "test": "yarn run services:up && concurrently -n \"next,jest\" --hide next -k -s command-jest \"next dev\" \"jest --runInBand\"",
     "posttest": "yarn run services:stop",
     "test:watch": "jest --watchAll --runInBand",

@@ -10,7 +10,11 @@ async function fetchData() {
   });
 }
 
-test("PUT /api/v1/migrations should return status code 405", async () => {
-  const response = await fetchData();
-  expect(response.status).toBe(405);
+describe("PUT /api/v1/migrations", () => {
+  describe("Anonymous user", () => {
+    test("Trying to use an different method", async () => {
+      const response = await fetchData();
+      expect(response.status).toBe(405);
+    });
+  });
 });

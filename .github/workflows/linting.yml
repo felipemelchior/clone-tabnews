@@ -9,8 +9,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "lts/hydrogen"
-      - run: npm ci
-      - run: npm run lint:prettier:check
+      - run: yarn install --frozen-lockfile
+      - run: yarn run lint:prettier:check
   Eslint:
     name: Eslint
     runs-on: ubuntu-latest
@@ -19,8 +19,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "lts/hydrogen"
-      - run: npm ci
-      - run: npm run lint:eslint:check
+      - run: yarn install --frozen-lockfile
+      - run: yarn run lint:eslint:check
   Commitlint:
     name: Commitlint
     runs-on: ubuntu-latest
@@ -31,5 +31,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "lts/hydrogen"
-      - run: npm ci
-      - run: npx commitlint --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }} --verbose
+      - run: yarn install --frozen-lockfile
+      - run: yarn commitlint --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }} --verbose
